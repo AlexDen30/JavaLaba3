@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
 
         Test [] tests = new Test[8];
+        TestMethods methods = new TestMethods();
 
         for (int i = 0; i<8 ;i++) {
             tests[i] = new Test();
@@ -46,130 +47,38 @@ public class Main {
         for (int j = 0; j<20; j++) {
 
             //Вставка в начало
-            startTime = System.nanoTime();
-            for (int i = 0; i<10000; i++) {
-                arrList.add(0,i);
-            }
-            endTime = System.nanoTime();
-            tests[0].timeOfExecutionArray.add((int) ((endTime - startTime)/1000000));
+            tests[0].timeOfExecutionArray.add(methods.addToBeginning(arrList, tests[0].countOfIterations));
+            tests[0].timeOfExecutionLinked.add(methods.addToBeginning(linkList, tests[0].countOfIterations));
 
-            startTime = System.nanoTime();
-            for (int i = 0; i<10000; i++) {
-                linkList.add(0,i);
-            }
-            endTime = System.nanoTime();
-            tests[0].timeOfExecutionLinked.add((int) ((endTime - startTime)/1000000));
 
             //Вставка в середину
-            startTime = System.nanoTime();
-            for (int i = 0; i<10000; i++) {
-                arrList.add(5000+i,i);
-            }
-            endTime = System.nanoTime();
-            tests[1].timeOfExecutionArray.add((int) ((endTime - startTime)/1000000));
-
-            startTime = System.nanoTime();
-            for (int i = 0; i<10000; i++) {
-                linkList.add(5000+i,i);
-            }
-            endTime = System.nanoTime();
-            tests[1].timeOfExecutionLinked.add((int) ((endTime - startTime)/1000000));
+            tests[1].timeOfExecutionArray.add(methods.addToMiddle(arrList, tests[1].countOfIterations));
+            tests[1].timeOfExecutionLinked.add(methods.addToMiddle(linkList, tests[1].countOfIterations));
 
             //Удаление из середины
-            startTime = System.nanoTime();
-            for (int i = 0; i<3000; i++) {
-                arrList.remove(arrList.size()/2);
-            }
-            endTime = System.nanoTime();
-            tests[2].timeOfExecutionArray.add((int) ((endTime - startTime)/1000000));
-
-            startTime = System.nanoTime();
-            for (int i = 0; i<3000; i++) {
-                linkList.remove(linkList.size()/2);
-            }
-            endTime = System.nanoTime();
-            tests[2].timeOfExecutionLinked.add((int) ((endTime - startTime)/1000000));
-
-            linkList.clear();
-            arrList.clear();
+            tests[2].timeOfExecutionArray.add(methods.deleteFromMiddle(arrList, tests[2].countOfIterations));
+            tests[2].timeOfExecutionLinked.add(methods.deleteFromMiddle(linkList, tests[2].countOfIterations));
 
             //Вставка в конец
-            startTime = System.nanoTime();
-            for (int i = 0; i<10000; i++) {
-                arrList.add(arrList.size(),i);
-            }
-            endTime = System.nanoTime();
-            tests[3].timeOfExecutionArray.add((int) ((endTime - startTime)/1000000));
-
-            startTime = System.nanoTime();
-            for (int i = 0; i<10000; i++) {
-                linkList.add(linkList.size(),i);
-            }
-            endTime = System.nanoTime();
-            tests[3].timeOfExecutionLinked.add((int) ((endTime - startTime)/1000000));
-
+            tests[3].timeOfExecutionArray.add(methods.addToEnding(arrList, tests[3].countOfIterations));
+            tests[3].timeOfExecutionLinked.add(methods.addToEnding(linkList, tests[3].countOfIterations));
 
             //Получение значения из середины
-            startTime = System.nanoTime();
-            for (int i = 4000; i<6000; i++) {
-                arrList.get(i);
-            }
-            endTime = System.nanoTime();
-            tests[4].timeOfExecutionArray.add((int) ((endTime - startTime)/1000000));
-
-            startTime = System.nanoTime();
-            for (int i = 4000; i<6000; i++) {
-                linkList.get(i);
-            }
-            endTime = System.nanoTime();
-            tests[4].timeOfExecutionLinked.add((int) ((endTime - startTime)/1000000));
-
+            tests[4].timeOfExecutionArray.add(methods.getFromMiddle(arrList, tests[4].countOfIterations));
+            tests[4].timeOfExecutionLinked.add(methods.getFromMiddle(linkList, tests[4].countOfIterations));
 
             //Получение значения из начала
-            startTime = System.nanoTime();
-            for (int i = 0; i<2000; i++) {
-                arrList.get(i);
-            }
-            endTime = System.nanoTime();
-            tests[5].timeOfExecutionArray.add((int) ((endTime - startTime)/1000000));
-
-            startTime = System.nanoTime();
-            for (int i = 0; i<2000; i++) {
-                linkList.get(i);
-            }
-            endTime = System.nanoTime();
-            tests[5].timeOfExecutionLinked.add((int) ((endTime - startTime)/1000000));
+            tests[5].timeOfExecutionArray.add(methods.getFromBeginning(arrList, tests[5].countOfIterations));
+            tests[5].timeOfExecutionLinked.add(methods.getFromBeginning(linkList, tests[5].countOfIterations));
 
             //Получение значения из конца
-            startTime = System.nanoTime();
-            for (int i = 8000; i<10000; i++) {
-                arrList.get(i);
-            }
-            endTime = System.nanoTime();
-            tests[6].timeOfExecutionArray.add((int) ((endTime - startTime)/1000000));
-
-            startTime = System.nanoTime();
-            for (int i = 8000; i<10000; i++) {
-                linkList.get(i);
-            }
-            endTime = System.nanoTime();
-            tests[6].timeOfExecutionLinked.add((int) ((endTime - startTime)/1000000));
-
+            tests[6].timeOfExecutionArray.add(methods.getFromEnding(arrList, tests[6].countOfIterations));
+            tests[6].timeOfExecutionLinked.add(methods.getFromEnding(linkList, tests[6].countOfIterations));
 
             //Удаление из начала
-            startTime = System.nanoTime();
-            for (int i = 0; i<3000; i++) {
-                arrList.remove(0);
-            }
-            endTime = System.nanoTime();
-            tests[7].timeOfExecutionArray.add((int) ((endTime - startTime)/1000000));
+            tests[7].timeOfExecutionArray.add(methods.deleteFromBeginning(arrList, tests[7].countOfIterations));
+            tests[7].timeOfExecutionLinked.add(methods.deleteFromBeginning(linkList, tests[7].countOfIterations));
 
-            startTime = System.nanoTime();
-            for (int i = 0; i<3000; i++) {
-                linkList.remove(0);
-            }
-            endTime = System.nanoTime();
-            tests[7].timeOfExecutionLinked.add((int) ((endTime - startTime)/1000000));
 
             linkList.clear();
             arrList.clear();

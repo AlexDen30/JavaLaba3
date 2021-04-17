@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Класс для хранения информации о тесте
@@ -51,4 +52,6 @@ public class Test {
                 countOfIterations + ", time for linked list (average):"
                 + timeLink + " ms, time for array list (average):" + timeArr + " ms");
     }
+
+
 }
